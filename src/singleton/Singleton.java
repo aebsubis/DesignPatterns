@@ -1,8 +1,5 @@
 package singleton;
 
-/**
- * TODO: Describe pros and cons
- */
 public class Singleton {
 	
 	private static Singleton m_singletonInstance = null;
