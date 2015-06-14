@@ -29,13 +29,13 @@ public class StrategyTest {
 	@Test
 	public final void test() {
 		Context context = new Context();
-		assertEquals(context.action(), "No strategy.");
+		assertEquals("No strategy.", context.action());
 
 		context.setStrategy(new StrategyOne());
-		assertEquals(context.action(), "StrategyOne.");
+		assertEquals("StrategyOne.", context.action());
 		
 		context.setStrategy(new StrategyTwo());
-		assertEquals(context.action(), "StrategyTwo.");
+		assertEquals("StrategyTwo.", context.action());
 	}
 
 }

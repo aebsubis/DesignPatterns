@@ -12,34 +12,28 @@ public class SingletonTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("SingletonTest::setUpBeforeClass");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		System.out.println("SingletonTest::tearDownAfterClass");
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("SingletonTest::setUp");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("SingletonTest::tearDown");
 	}
 
 	@Test
 	public final void testGetInstance() {
-		System.out.println("SingletonTest::testGetInstance");
 		Singleton singletonInstance = Singleton.getInstance();
 		assertNotEquals(singletonInstance, null);
 	}
 
 	@Test
 	public final void testExecute() {
-		System.out.println("SingletonTest::testExecute");
 		Singleton singletonInstance = Singleton.getInstance();
 		assertEquals(1, singletonInstance.execute());
 		assertEquals(2, singletonInstance.execute());

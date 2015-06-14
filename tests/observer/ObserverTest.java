@@ -14,22 +14,18 @@ public class ObserverTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.out.println("ObserverTest::setUpBeforeClass");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		System.out.println("ObserverTest::tearDownAfterClass");
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("ObserverTest::setUp");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		System.out.println("ObserverTest::tearDown");
 	}
 
 	@Test
@@ -37,11 +33,11 @@ public class ObserverTest {
 		ConcreteSubject cs = new ConcreteSubject();
 		ConcreteObserver co1 = new ConcreteObserver();
 		
-		assertEquals(co1.getObservedState(), null);
+		assertEquals(null, co1.getObservedState());
 		
 		cs.setState("TestNoSubscription");
 		
-		assertEquals(co1.getObservedState(), null);
+		assertEquals(null, co1.getObservedState());
 	}
 	
 	@Test
@@ -49,12 +45,12 @@ public class ObserverTest {
 		ConcreteSubject cs = new ConcreteSubject();
 		ConcreteObserver co1 = new ConcreteObserver();
 		
-		assertEquals(co1.getObservedState(), null);
+		assertEquals(null, co1.getObservedState());
 		
 		cs.register(co1);
 		cs.setState("TestNoSubscription");
 		
-		assertEquals(co1.getObservedState(), "TestNoSubscription");
+		assertEquals("TestNoSubscription", co1.getObservedState());
 	}
 	
 	@Test
@@ -73,9 +69,9 @@ public class ObserverTest {
 		cs.register(co3);
 		cs.setState("TestMultipleSubscriptions");
 		
-		assertEquals(co1.getObservedState(), "TestMultipleSubscriptions");		
-		assertEquals(co2.getObservedState(), "TestMultipleSubscriptions");		
-		assertEquals(co3.getObservedState(), "TestMultipleSubscriptions");
+		assertEquals("TestMultipleSubscriptions", co1.getObservedState());		
+		assertEquals("TestMultipleSubscriptions", co2.getObservedState());		
+		assertEquals("TestMultipleSubscriptions", co3.getObservedState());
 	}
 	
 	@Test
@@ -88,12 +84,12 @@ public class ObserverTest {
 		cs.register(co1);
 		cs.setState("TestSingleUnsubscription");
 		
-		assertEquals(co1.getObservedState(), "TestSingleUnsubscription");
+		assertEquals("TestSingleUnsubscription", co1.getObservedState());
 		
 		cs.unregister(co1);
 		cs.setState("TestSingleUnsubscription2");
 		
-		assertEquals(co1.getObservedState(), "TestSingleUnsubscription");
+		assertEquals("TestSingleUnsubscription", co1.getObservedState());
 	}
 	
 	@Test
@@ -109,15 +105,15 @@ public class ObserverTest {
 		cs.register(co2);
 		cs.setState("TestMultipleUnsubscriptions");
 
-		assertEquals(co1.getObservedState(), "TestMultipleUnsubscriptions");
-		assertEquals(co2.getObservedState(), "TestMultipleUnsubscriptions");
+		assertEquals("TestMultipleUnsubscriptions", co1.getObservedState());
+		assertEquals("TestMultipleUnsubscriptions", co2.getObservedState());
 
 		cs.unregister(co1);
 		cs.unregister(co2);
 		cs.setState("TestMultipleUnsubscriptions2");
 
-		assertEquals(co1.getObservedState(), "TestMultipleUnsubscriptions");
-		assertEquals(co2.getObservedState(), "TestMultipleUnsubscriptions");
+		assertEquals("TestMultipleUnsubscriptions", co1.getObservedState());
+		assertEquals("TestMultipleUnsubscriptions", co2.getObservedState());
 	}
 	
 	@Test
@@ -133,14 +129,14 @@ public class ObserverTest {
 		cs.register(co2);
 		cs.setState("TestPartialUnsubscription");
 		
-		assertEquals(co1.getObservedState(), "TestPartialUnsubscription");		
-		assertEquals(co2.getObservedState(), "TestPartialUnsubscription");	
+		assertEquals("TestPartialUnsubscription", co1.getObservedState());		
+		assertEquals("TestPartialUnsubscription", co2.getObservedState());	
 		
 		cs.unregister(co1);
 		cs.setState("TestPartialUnsubscription2");
 		
-		assertEquals(co1.getObservedState(), "TestPartialUnsubscription");		
-		assertEquals(co2.getObservedState(), "TestPartialUnsubscription2");	
+		assertEquals("TestPartialUnsubscription", co1.getObservedState());		
+		assertEquals("TestPartialUnsubscription2", co2.getObservedState());	
 	}
 	
 	@Test
@@ -153,17 +149,17 @@ public class ObserverTest {
 		cs.register(co1);
 		cs.setState("TestSingleUnsubscription");
 		
-		assertEquals(co1.getObservedState(), "TestSingleUnsubscription");
+		assertEquals("TestSingleUnsubscription", co1.getObservedState());
 		
 		cs.unregister(co1);
 		cs.setState("TestSingleUnsubscription2");
 		
-		assertEquals(co1.getObservedState(), "TestSingleUnsubscription");
+		assertEquals("TestSingleUnsubscription", co1.getObservedState());
 		
 		cs.register(co1);
 		cs.setState("TestSingleUnsubscription3");
 
-		assertEquals(co1.getObservedState(), "TestSingleUnsubscription3");
+		assertEquals("TestSingleUnsubscription3", co1.getObservedState());
 	}
 	
 	@Test
@@ -179,22 +175,22 @@ public class ObserverTest {
 		cs.register(co2);
 		cs.setState("TestMultipleResubscription");
 
-		assertEquals(co1.getObservedState(), "TestMultipleResubscription");
-		assertEquals(co2.getObservedState(), "TestMultipleResubscription");
+		assertEquals("TestMultipleResubscription", co1.getObservedState());
+		assertEquals("TestMultipleResubscription", co2.getObservedState());
 
 		cs.unregister(co1);
 		cs.unregister(co2);
 		cs.setState("TestMultipleResubscription2");
 
-		assertEquals(co1.getObservedState(), "TestMultipleResubscription");
-		assertEquals(co2.getObservedState(), "TestMultipleResubscription");
+		assertEquals("TestMultipleResubscription", co1.getObservedState());
+		assertEquals("TestMultipleResubscription", co2.getObservedState());
 
 		cs.register(co1);
 		cs.register(co2);
 		cs.setState("TestMultipleResubscription3");
 
-		assertEquals(co1.getObservedState(), "TestMultipleResubscription3");
-		assertEquals(co2.getObservedState(), "TestMultipleResubscription3");
+		assertEquals("TestMultipleResubscription3", co1.getObservedState());
+		assertEquals("TestMultipleResubscription3", co2.getObservedState());
 	}
 	
 	@Test
@@ -210,21 +206,21 @@ public class ObserverTest {
 		cs.register(co2);
 		cs.setState("TestPartialResubscription");
 
-		assertEquals(co1.getObservedState(), "TestPartialResubscription");
-		assertEquals(co2.getObservedState(), "TestPartialResubscription");
+		assertEquals("TestPartialResubscription", co1.getObservedState());
+		assertEquals("TestPartialResubscription", co2.getObservedState());
 
 		cs.unregister(co1);
 		cs.unregister(co2);
 		cs.setState("TestPartialResubscription2");
 
-		assertEquals(co1.getObservedState(), "TestPartialResubscription");
-		assertEquals(co2.getObservedState(), "TestPartialResubscription");
+		assertEquals("TestPartialResubscription", co1.getObservedState());
+		assertEquals("TestPartialResubscription", co2.getObservedState());
 
 		cs.register(co1);
 		cs.setState("TestPartialResubscription3");
 
-		assertEquals(co1.getObservedState(), "TestPartialResubscription3");
-		assertEquals(co2.getObservedState(), "TestPartialResubscription");
+		assertEquals("TestPartialResubscription3", co1.getObservedState());
+		assertEquals("TestPartialResubscription", co2.getObservedState());
 	}
 	
 	@Test
@@ -239,15 +235,15 @@ public class ObserverTest {
 		cs.register(co1);
 		cs.setState("TestMixedSubscriptionUnsubscription");
 
-		assertEquals(co1.getObservedState(), "TestMixedSubscriptionUnsubscription");
-		assertEquals(co2.getObservedState(), null);
+		assertEquals("TestMixedSubscriptionUnsubscription", co1.getObservedState());
+		assertEquals(null, co2.getObservedState());
 
 		cs.unregister(co1);
 		cs.register(co2);
 		cs.setState("TestMixedSubscriptionUnsubscription2");
 
-		assertEquals(co1.getObservedState(), "TestMixedSubscriptionUnsubscription");
-		assertEquals(co2.getObservedState(), "TestMixedSubscriptionUnsubscription2");
+		assertEquals("TestMixedSubscriptionUnsubscription", co1.getObservedState());
+		assertEquals("TestMixedSubscriptionUnsubscription2", co2.getObservedState());
 	}
 	
 	@Test
@@ -264,7 +260,6 @@ public class ObserverTest {
 		
 		cs.setState("TestLargeSubscription");
 		
-		
 		ConcreteObserver co1 = new ConcreteObserver();
 		ConcreteObserver co2 = new ConcreteObserver();
 
@@ -274,14 +269,14 @@ public class ObserverTest {
 		cs.register(co1);
 		cs.setState("TestMixedSubscriptionUnsubscription");
 
-		assertEquals(co1.getObservedState(), "TestMixedSubscriptionUnsubscription");
-		assertEquals(co2.getObservedState(), null);
+		assertEquals("TestMixedSubscriptionUnsubscription", co1.getObservedState());
+		assertEquals(null, co2.getObservedState());
 
 		cs.unregister(co1);
 		cs.register(co2);
 		cs.setState("TestMixedSubscriptionUnsubscription2");
 
-		assertEquals(co1.getObservedState(), "TestMixedSubscriptionUnsubscription");
-		assertEquals(co2.getObservedState(), "TestMixedSubscriptionUnsubscription2");
+		assertEquals("TestMixedSubscriptionUnsubscription", co1.getObservedState());
+		assertEquals("TestMixedSubscriptionUnsubscription2", co2.getObservedState());
 	}
 }
