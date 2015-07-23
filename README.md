@@ -3,5 +3,7 @@ Some design patterns implemented in Java.
 
 Design patterns list:
 
-- Singletone
+- Composite
 - Observer
+- Singletone
+- Strategy
